@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <!-- TabHost必须包含一个 TabWidget和一个FrameLayout -->
     <LinearLayout
@@ -54,106 +55,9 @@
 
         </LinearLayout>
 
-    <TabHost
-        android:id="@+id/myTabHost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-
-            <!-- TabWidget的id属性必须为 @android:id/tabs -->
-
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
-                android:gravity="right|center_vertical"/>
-
-
-            <!-- FrameLayout的id属性必须为 @android:id/tabcontent -->
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0">
-
-
-                <LinearLayout
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="490dp"
-                    android:orientation="vertical">
-                    <ListView
-                        android:id="@+id/list_view2"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp">
-                    </ListView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                    </LinearLayout>
-                    <ListView
-                        android:id="@+id/list_view3"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp">
-
-
-                    </ListView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/view1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </LinearLayout>
-
-                    <ListView
-                        android:id="@+id/list_view1"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp">
-                    </ListView>
-
-                </LinearLayout>
-            </FrameLayout>
-        </RelativeLayout>
-    </TabHost>
     </LinearLayout>
-</RelativeLayout>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv"></ListView>
+</LinearLayout>

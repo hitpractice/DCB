@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,21 +59,21 @@ public class MainActivity extends Activity {
     private void init() {
         mData=new ArrayList<Map<String, Object>>();
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("goodname", "G1");
-        map.put("goodprice", "100");
-        map.put("goodlocation", "location 1");
+        map.put("goodname", "商品1");
+        map.put("goodprice", "10元");
+        map.put("goodlocation", "  ");
         map.put("gooddescription", "google 1");
         mData.add(map);
         map = new HashMap<String, Object>();
-        map.put("goodname", "G2");
-        map.put("goodprice", "200");
-        map.put("goodlocation", "location 2");
+        map.put("goodname", "商品2");
+        map.put("goodprice", "12元");
+        map.put("goodlocation", "  ");
         map.put("gooddescription", "google 1");
         mData.add(map);
         map = new HashMap<String, Object>();
-        map.put("goodname", "G3");
-        map.put("goodprice", "300");
-        map.put("goodlocation", "location 3");
+        map.put("goodname", "商品3");
+        map.put("goodprice", "30元");
+        map.put("goodlocation", "  ");
         map.put("gooddescription", "google 3");
         mData.add(map);
     }
@@ -81,8 +82,9 @@ public class MainActivity extends Activity {
         public TextView goodname;
         public TextView goodprice;
         public TextView goodlocation;
-        public Button editButton;
-        public Button deleteButton;
+        public Button delectButton;
+        public Button addButton;
+        public EditText e1;
     }
 
     public class MyAdapter extends BaseAdapter{
@@ -120,8 +122,11 @@ public class MainActivity extends Activity {
                 holder.goodname = (TextView)convertView.findViewById(R.id.goodname);
                 holder.goodprice = (TextView)convertView.findViewById(R.id.goodprice);
                 holder.goodlocation = (TextView)convertView.findViewById(R.id.goodlocation);
-                holder.editButton = (Button)convertView.findViewById(R.id.editButton);
-                holder.deleteButton = (Button)convertView.findViewById(R.id.deleteButton);
+                holder.delectButton = (Button)convertView.findViewById(R.id.editButton);
+                holder.addButton = (Button)convertView.findViewById(R.id.addButton);
+                holder.e1=(EditText)convertView.findViewById(R.id.e1);
+
+
                 convertView.setTag(holder);
             }else {
                 holder = (ViewHolder)convertView.getTag();
@@ -129,16 +134,16 @@ public class MainActivity extends Activity {
             holder.goodname.setText((String)mData.get(position).get("goodname"));
             holder.goodprice.setText((String)mData.get(position).get("goodprice"));
             holder.goodlocation.setText((String)mData.get(position).get("goodlocation"));
-            holder.editButton.setOnClickListener(new View.OnClickListener() {
+            holder.delectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //编辑商品信息
+                    //减少c商品
                 }
             });
-            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            holder.addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //删除商品信息
+                    //增加商品信息
                 }
             });
             return convertView;
