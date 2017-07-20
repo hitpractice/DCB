@@ -9,20 +9,47 @@
     tools:context="com.hitsoft.dab.MainActivity"
     android:orientation="horizontal"
     android:weightSum="1">
+    <TextView android:id="@+id/goodname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    <TextView android:id="@+id/goodprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    <TextView android:id="@+id/goodlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/abutton"/>
-
+        android:id="@+id/delectButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:text="-"
+        android:textSize="10dp"
+        android:layout_gravity="center|right"
+        />
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/e1"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dbutton"/>
-
+        android:id="@+id/addButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:text="+"
+        android:textSize="10dp"
+        android:layout_gravity="center|right"
+        />
 </LinearLayout>
 
 
