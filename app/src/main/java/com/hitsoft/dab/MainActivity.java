@@ -1,89 +1,148 @@
 package com.hitsoft.dab;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    private String[] data = {"apple","pee","sss","hello","qqq","hahaha","gif","qwer","abcd","eddfff","sssaaa","fuc","gun","gay","smile"};
-    private ListView mylistview;
-    private ArrayList<String> list = new ArrayList<String>();
+    /**
+     * @查看我发布的商品
+     */
+    private List<Map<String, Object>> mData;
+    private ListView mListView;
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_info);
-
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(
-                MainActivity.this,android.R.layout.simple_list_item_1,data);
-        ListView listView = (ListView) findViewById(R.id.list_view1);
-        listView.setAdapter(adapter);
-
-        ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(
-                MainActivity.this,android.R.layout.simple_list_item_1,data);
-        ListView listView2 = (ListView) findViewById(R.id.list_view2);
-        listView2.setAdapter(adapter2);
-
-
-        mylistview = (ListView)findViewById(R.id.list_view3);
-        list.add("设置");
-        list.add("余额");
-        list.add("地址管理");
-        list.add("我的收藏");
-        list.add("通知");
-        list.add("其他");
-        ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,list);
-        mylistview.setAdapter(myArrayAdapter);
-        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3){
-                if(list.get(arg2).equals("设置"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了设置",Toast.LENGTH_SHORT).show();
-                }
-                if(list.get(arg2).equals("余额"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了余额",Toast.LENGTH_SHORT).show();
-                }
-                if(list.get(arg2).equals("地址管理"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了地址管理",Toast.LENGTH_SHORT).show();
-                }
-                if(list.get(arg2).equals("我的收藏"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了我的收藏",Toast.LENGTH_SHORT).show();
-                }
-                if(list.get(arg2).equals("通知"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了通知",Toast.LENGTH_SHORT).show();
-                }
-                if(list.get(arg2).equals("其他"))
-                {
-                    Toast.makeText(MainActivity.this,"你点击了其他",Toast.LENGTH_SHORT).show();
-                }
+        mListView=(ListView)findViewById(R.id.lv);
+//        returnButton = (Button)findViewById(R.id.returnButton);
+//        returnButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                //返回上层界面（用户中心）
+//                Intent intent = new Intent(MyGoodsActivity.this,MyInfoActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        MyAdapter adapter = new MyAdapter(this);
+        mListView.setAdapter(adapter);
+        mListView.setItemsCanFocus(false);
+        mListView.setOnItemClickListener(new OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //点击列表中栏目发生的事件
+                Toast.makeText(MainActivity.this, "商品描述：" + (String)mData.get(position).get("gooddescription"), Toast.LENGTH_LONG).show();
             }
-
         });
-        TabHost tabHost = (TabHost) findViewById(R.id.myTabHost);
-
-        // 如果不是继承TabActivity，则必须在得到tabHost之后，添加标签之前调用tabHost.setup()
-        tabHost.setup();
-
-        // 这里content的设置采用了布局文件中的view
-
-        tabHost.addTab(tabHost.newTabSpec("tab1")
-                .setIndicator("商家推荐").setContent(R.id.view1));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("热销")
-                .setContent(R.id.view2));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("其他")
-                .setContent(R.id.view3));
     }
+
+    //初始化
+    private void init() {
+        mData=new ArrayList<Map<String, Object>>();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("goodname", "G1");
+        map.put("goodprice", "100");
+        map.put("goodlocation", "location 1");
+        map.put("gooddescription", "google 1");
+        mData.add(map);
+        map = new HashMap<String, Object>();
+        map.put("goodname", "G2");
+        map.put("goodprice", "200");
+        map.put("goodlocation", "location 2");
+        map.put("gooddescription", "google 1");
+        mData.add(map);
+        map = new HashMap<String, Object>();
+        map.put("goodname", "G3");
+        map.put("goodprice", "300");
+        map.put("goodlocation", "location 3");
+        map.put("gooddescription", "google 3");
+        mData.add(map);
+    }
+
+    public final class ViewHolder{
+        public TextView goodname;
+        public TextView goodprice;
+        public TextView goodlocation;
+        public Button editButton;
+        public Button deleteButton;
+    }
+
+    public class MyAdapter extends BaseAdapter{
+        private LayoutInflater mInflater;
+
+        public MyAdapter(Context context){
+            this.mInflater = LayoutInflater.from(context);
+            init();
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return mData.size();
+        }
+
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            if (convertView == null) {
+                holder=new ViewHolder();
+                convertView = mInflater.inflate(R.layout.listbutton, null);
+                holder.goodname = (TextView)convertView.findViewById(R.id.goodname);
+                holder.goodprice = (TextView)convertView.findViewById(R.id.goodprice);
+                holder.goodlocation = (TextView)convertView.findViewById(R.id.goodlocation);
+                holder.editButton = (Button)convertView.findViewById(R.id.editButton);
+                holder.deleteButton = (Button)convertView.findViewById(R.id.deleteButton);
+                convertView.setTag(holder);
+            }else {
+                holder = (ViewHolder)convertView.getTag();
+            }
+            holder.goodname.setText((String)mData.get(position).get("goodname"));
+            holder.goodprice.setText((String)mData.get(position).get("goodprice"));
+            holder.goodlocation.setText((String)mData.get(position).get("goodlocation"));
+            holder.editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //编辑商品信息
+                }
+            });
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //删除商品信息
+                }
+            });
+            return convertView;
+        }
+    }
+    private Button returnButton;
 }
