@@ -1,240 +1,148 @@
 package com.hitsoft.dab;
 
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.net.Uri;
-import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import android.app.Activity;
-import android.support.v7.view.menu.MenuView;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
-import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.ArrayList;
-
-import static android.R.attr.rating;
-import static android.widget.Toast.LENGTH_LONG;
-
 public class MainActivity extends Activity {
-    private String[] data = {"apple", "pee", "sss", "hello", "qqq", "hahaha", "gif", "qwer", "abcd", "eddfff", "sssaaa", "fuc", "gun", "gay", "smile"};
-    private ListView mylistview;
-    private ArrayList<String> list = new ArrayList<String>();
     /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     * @查看我发布的商品
      */
-    private GoogleApiClient client;
+    private List<Map<String, Object>> mData;
+    private ListView mListView;
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_info);
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                MainActivity.this, android.R.layout.simple_list_item_1, data);
-        final ListView listView = (ListView) findViewById(R.id.list_view1);
-        final RatingBar rat = (RatingBar) findViewById(R.id.rat);
-        rat.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+        mListView=(ListView)findViewById(R.id.lv);
+//        returnButton = (Button)findViewById(R.id.returnButton);
+//        returnButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                //返回上层界面（用户中心）
+//                Intent intent = new Intent(MyGoodsActivity.this,MyInfoActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        MyAdapter adapter = new MyAdapter(this);
+        mListView.setAdapter(adapter);
+        mListView.setItemsCanFocus(false);
+        mListView.setOnItemClickListener(new OnItemClickListener(){
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-
-                ratingBar.setRating(rating);
-                Toast.makeText(MainActivity.this,"rating"+String.valueOf(rating),
-                        Toast.LENGTH_LONG);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //点击列表中栏目发生的事件
+                Toast.makeText(MainActivity.this, "商品描述：" + (String)mData.get(position).get("gooddescription"), Toast.LENGTH_LONG).show();
             }
         });
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("名称")
-                        .setMessage("商品详情 ")
-                        .setNeutralButton("确定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dlg, int sumthin) {
-                                // do whatever you want to do
-                            }
-                        }).show();
-
-            }
-        });
-
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-                MainActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listView2 = (ListView) findViewById(R.id.list_view2);
-        listView2.setAdapter(adapter2);
-
-
-        mylistview = (ListView) findViewById(R.id.list_view3);
-        list.add("设置");
-        list.add("余额");
-        list.add("地址管理");
-        list.add("我的收藏");
-        list.add("通知");
-        list.add("其他");
-        ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_list_item_1, list);
-        mylistview.setAdapter(myArrayAdapter);
-        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                if (list.get(arg2).equals("设置")) {
-                    Toast.makeText(MainActivity.this, "你点击了设置", Toast.LENGTH_SHORT).show();
-                }
-                if (list.get(arg2).equals("余额")) {
-                    Toast.makeText(MainActivity.this, "你点击了余额", Toast.LENGTH_SHORT).show();
-                }
-                if (list.get(arg2).equals("地址管理")) {
-                    Toast.makeText(MainActivity.this, "你点击了地址管理", Toast.LENGTH_SHORT).show();
-                }
-                if (list.get(arg2).equals("我的收藏")) {
-                    Toast.makeText(MainActivity.this, "你点击了我的收藏", Toast.LENGTH_SHORT).show();
-                }
-                if (list.get(arg2).equals("通知")) {
-                    Toast.makeText(MainActivity.this, "你点击了通知", Toast.LENGTH_SHORT).show();
-                }
-                if (list.get(arg2).equals("其他")) {
-                    Toast.makeText(MainActivity.this, "你点击了其他", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        });
-
-
-        TabHost tabHost = (TabHost) findViewById(R.id.myTabHost);
-
-        // 如果不是继承TabActivity，则必须在得到tabHost之后，添加标签之前调用tabHost.setup()
-        tabHost.setup();
-
-        // 这里content的设置采用了布局文件中的view
-
-        tabHost.addTab(tabHost.newTabSpec("tab1")
-                .setIndicator("商家推荐").setContent(R.id.view1));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("热销")
-                .setContent(R.id.view2));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("其他")
-                .setContent(R.id.view3));
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-    public final  class ViewHolder{
-        public Button abutton;
-        public Button dbutton;
-        public EditText e1;
+
+    //初始化
+    private void init() {
+        mData=new ArrayList<Map<String, Object>>();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("goodname", "G1");
+        map.put("goodprice", "100");
+        map.put("goodlocation", "location 1");
+        map.put("gooddescription", "google 1");
+        mData.add(map);
+        map = new HashMap<String, Object>();
+        map.put("goodname", "G2");
+        map.put("goodprice", "200");
+        map.put("goodlocation", "location 2");
+        map.put("gooddescription", "google 1");
+        mData.add(map);
+        map = new HashMap<String, Object>();
+        map.put("goodname", "G3");
+        map.put("goodprice", "300");
+        map.put("goodlocation", "location 3");
+        map.put("gooddescription", "google 3");
+        mData.add(map);
     }
+
+    public final class ViewHolder{
+        public TextView goodname;
+        public TextView goodprice;
+        public TextView goodlocation;
+        public Button editButton;
+        public Button deleteButton;
+    }
+
     public class MyAdapter extends BaseAdapter{
         private LayoutInflater mInflater;
-        private  MyAdapter(Context context){
-            this.mInflater=LayoutInflater.from(context);
+
+        public MyAdapter(Context context){
+            this.mInflater = LayoutInflater.from(context);
             init();
-
-        }
-
-        private void init() {
         }
 
         @Override
         public int getCount() {
-            return 0;
+            // TODO Auto-generated method stub
+            return mData.size();
         }
 
         @Override
-        public Object getItem(int i) {
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
             return null;
         }
 
         @Override
-        public long getItemId(int i) {
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
             return 0;
         }
 
         @Override
-        public View getView(int i, View convertView, ViewGroup parent) {
-            ViewHolder holder=null;
-            if (convertView==null){
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            if (convertView == null) {
                 holder=new ViewHolder();
-                convertView=mInflater.inflate(R.layout.listbutton,null);
-                holder.abutton=(Button)convertView.findViewById(R.id.abutton);
-                holder.dbutton=(Button)convertView.findViewById(R.id.dbutton);
-                holder.e1=(EditText)convertView.findViewById(R.id.e1);
+                convertView = mInflater.inflate(R.layout.listbutton, null);
+                holder.goodname = (TextView)convertView.findViewById(R.id.goodname);
+                holder.goodprice = (TextView)convertView.findViewById(R.id.goodprice);
+                holder.goodlocation = (TextView)convertView.findViewById(R.id.goodlocation);
+                holder.editButton = (Button)convertView.findViewById(R.id.editButton);
+                holder.deleteButton = (Button)convertView.findViewById(R.id.deleteButton);
                 convertView.setTag(holder);
-
-            }else{
-                holder=(ViewHolder)convertView.getTag();
+            }else {
+                holder = (ViewHolder)convertView.getTag();
             }
-            holder.abutton.setOnClickListener(new View.OnClickListener() {
+            holder.goodname.setText((String)mData.get(position).get("goodname"));
+            holder.goodprice.setText((String)mData.get(position).get("goodprice"));
+            holder.goodlocation.setText((String)mData.get(position).get("goodlocation"));
+            holder.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-
+                public void onClick(View v) {
+                    //编辑商品信息
                 }
             });
-            holder.dbutton.setOnClickListener(new View.OnClickListener() {
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-
+                public void onClick(View v) {
+                    //删除商品信息
                 }
             });
             return convertView;
-
         }
-        private Button returnButton;
-
     }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
+    private Button returnButton;
 }
