@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/back0"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/textview6"
+        android:text="@string/zhuce" />
+
+    <EditText
+        android:id="@+id/register_username"
+        style="@style/edittext5"
+        android:hint="@string/yonghuming"
+        android:layout_width="313dp" />
+
+    <EditText
+        android:id="@+id/register_passwd"
+        style="@style/edittext6"
+        android:hint="@string/mima"
+        android:layout_width="313dp" />
+
+    <EditText
+        android:id="@+id/reregister_passwd"
+        style="@style/edittext6"
+        android:hint="@string/querenmima"
+        android:layout_width="313dp"/>
+
+    <Button
+        android:id="@+id/register_submit"
+        style="@style/button5"
+        android:layout_width="103dp"
+        android:layout_height="74dp"
+        android:background="@drawable/button"
+        android:text="@string/queding"
+        />
+
+</LinearLayout>
