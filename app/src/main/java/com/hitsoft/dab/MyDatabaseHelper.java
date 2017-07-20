@@ -12,7 +12,7 @@ import android.view.Menu;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASENAME="xxx.db";   //数据库名字
+    private static final String DATABASENAME="xxx.db";   //数据库名字kkkk
     private static final int DATABASEVERSION=2;     //数据库版本
     private static final String TABLENAME1="restaurant";     //表的名字
     private static final String TABLENAME2="dingdan";

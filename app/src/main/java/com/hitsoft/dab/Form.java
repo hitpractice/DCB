@@ -35,7 +35,7 @@ package com.hitsoft.dab;
                     result.append("=");
                     result.append(URLEncoder.encode(entry.value + "", encoding));
                 } catch (Exception e) {
-                    // This should never happen
+                    // This should never happenjjj
                     throw new RuntimeException(e);
                 }
             }
