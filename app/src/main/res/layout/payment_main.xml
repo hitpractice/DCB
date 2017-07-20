@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.hitsoft.dab.MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支付信息"
+        android:gravity="center"
+        android:textSize="30dp"
+        />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/spinner" />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/addview"
+        android:layout_gravity="center"
+        android:text="显示收货地址"/>
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_weight="1.01"></ListView>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="支 付"
+        android:textSize="20dp"
+        android:layout_gravity="end"
+
+        />
+
+</LinearLayout>
+
+
