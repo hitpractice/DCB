@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DCB_zls.iml" filepath="$PROJECT_DIR$/DCB_zls.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Dab.iml" filepath="$PROJECT_DIR$/Dab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DCB.iml" filepath="$PROJECT_DIR$/DCB.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
                 holder.goodname = (TextView)convertView.findViewById(R.id.goodname);
                 holder.goodprice = (TextView)convertView.findViewById(R.id.goodprice);
                 holder.goodlocation = (TextView)convertView.findViewById(R.id.goodlocation);
-                holder.delectButton = (Button)convertView.findViewById(R.id.editButton);
+                holder.delectButton = (Button)convertView.findViewById(R.id.delectButton);
                 holder.addButton = (Button)convertView.findViewById(R.id.addButton);
                 holder.e1=(EditText)convertView.findViewById(R.id.e1);
 
