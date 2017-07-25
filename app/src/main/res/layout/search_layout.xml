@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是筛选界面，按钮和EditText通过筛选关键词来实现listview的筛选"/>
+    <TextView
+        android:id="@+id/search_keyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关键词为："/>
+    <ListView
+        android:id="@+id/list_view4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ListView>
+
+</LinearLayout>

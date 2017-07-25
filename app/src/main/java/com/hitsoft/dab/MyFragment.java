@@ -1,6 +1,7 @@
 package com.hitsoft.dab;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -39,22 +40,27 @@ public class MyFragment extends Fragment{
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 if (list.get(arg2).equals("设置")) {
-                    Toast.makeText(getActivity(), "你点击了设置", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),SettingActivity.class);
+                    startActivity(intent);
                 }
                 if (list.get(arg2).equals("余额")) {
-                    Toast.makeText(getActivity(), "你点击了余额", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),MoneyActivity.class);
+                    startActivity(intent);
                 }
                 if (list.get(arg2).equals("地址管理")) {
-                    Toast.makeText(getActivity(), "你点击了地址管理", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),AddressActivity.class);
+                    startActivity(intent);
                 }
                 if (list.get(arg2).equals("我的收藏")) {
-                    Toast.makeText(getActivity(), "你点击了我的收藏", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),LikeActivity.class);
+                    startActivity(intent);
                 }
                 if (list.get(arg2).equals("通知")) {
-                    Toast.makeText(getActivity(), "你点击了通知", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),MessageActivity.class);
+                    startActivity(intent);
                 }
                 if (list.get(arg2).equals("其他")) {
-                    Toast.makeText(getActivity(), "你点击了其他", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "暂未开发", Toast.LENGTH_SHORT).show();
                 }
             }
 

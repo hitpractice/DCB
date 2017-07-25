@@ -37,14 +37,14 @@
             android:id="@+id/unregister_login_button"
             style="@style/button4"
             android:layout_height="58dp"
-            android:background="@drawable/button"
+
             android:text="@string/youkedenglu"
             android:layout_width="62dp"/>
 
         <Button
             android:id="@+id/user_login_button"
             style="@style/button4"
-            android:background="@drawable/button"
+
             android:text="@string/denglu"
             android:layout_height="58dp"
             android:layout_width="62dp"/>
@@ -52,7 +52,7 @@
         <Button
             android:id="@+id/user_register_button"
             style="@style/button4"
-            android:background="@drawable/button"
+
             android:text="@string/zhuce"
             android:layout_height="58dp"
             android:layout_width="62dp" />
