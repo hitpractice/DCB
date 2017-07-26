@@ -3,7 +3,6 @@ package com.hitsoft.dab;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by Administrator on 2017/7/20.
@@ -24,7 +24,6 @@ public class MyFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View MyLayout = inflater.inflate(R.layout.my_layout, container, false);
-
 
         mylistview = (ListView) MyLayout.findViewById(R.id.list_view3);
         list.add("设置");
@@ -64,7 +63,8 @@ public class MyFragment extends Fragment{
                 }
             }
 
-        });return MyLayout;
+        });
+        return MyLayout;
     }
 
 }

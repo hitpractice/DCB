@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -30,7 +32,8 @@
         <activity android:name=".LikeActivity"></activity>
         <activity android:name=".AddressActivity"></activity>
         <activity android:name=".MessageActivity"></activity>
-        <activity android:name="FragmentActivity">
+        <activity android:name="FragmentActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

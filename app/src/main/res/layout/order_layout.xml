@@ -13,12 +13,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="定位" />
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:src="@mipmap/if_location" />
 
             <EditText
                 android:id="@+id/edit1"
@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:hint="想吃点什么？" />
 
             <ImageButton
@@ -33,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/if_search" />
         </LinearLayout>
 
         <TextView

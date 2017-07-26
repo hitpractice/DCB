@@ -59,7 +59,7 @@ public class MapActivity extends Activity {
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!permissionList.isEmpty()) {
-            String [] permissions = permissionList.toArray(new String[permissionList.size()]);
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(MapActivity.this, permissions, 1);
         } else {
             requestLocation();
@@ -89,7 +89,7 @@ public class MapActivity extends Activity {
         mLocationClient.start();
     }
 
-    private void initLocation(){
+    private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setScanSpan(5000);
         option.setIsNeedAddress(true);
@@ -138,7 +138,7 @@ public class MapActivity extends Activity {
         }
     }
 
-    public    class MyLocationListener implements BDLocationListener {
+    public class MyLocationListener implements BDLocationListener {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -162,6 +162,7 @@ public class MapActivity extends Activity {
                 navigateTo(location);
             }
         }
+
         public void onConnectHotSpotMessage(String location, int i) {
 
         }

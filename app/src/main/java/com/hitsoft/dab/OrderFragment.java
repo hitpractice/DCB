@@ -28,7 +28,7 @@ import java.util.Map;
  */
 public class OrderFragment extends Fragment {
 
-    private Button button1 = null;
+    private ImageButton button1 = null;
     public static String searchkeyword;
     private EditText edit1 = null;
     private ImageButton button2 = null;
@@ -37,9 +37,9 @@ public class OrderFragment extends Fragment {
     private List<Map<String, Object>> data_list;
     private SimpleAdapter sim_adapter;
     // 图片封装为一个数组
-    private int[] icon = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    private int[] icon = {R.mipmap.if_1, R.mipmap.if_2,
+            R.mipmap.if_3, R.mipmap.if_4, R.mipmap.if_5,
+            R.mipmap.if_6, R.mipmap.if_7, R.mipmap.if_8};
     private String[] iconName = {"便当简餐", "拉面米线", "汉堡薯条", "奶茶蛋糕", "异国料理", "包子粥店", "火锅烧烤",
             "果蔬生鲜"};
 
@@ -55,7 +55,7 @@ public class OrderFragment extends Fragment {
         ListView listView = (ListView) OrderLayout.findViewById(R.id.list_view1);
         listView.setAdapter(adapter);
 
-        this.button1 = (Button) OrderLayout.findViewById(R.id.button1);
+        this.button1 = (ImageButton) OrderLayout.findViewById(R.id.button1);
         button1.setOnClickListener(new button1OnClickListenerImpl());
 
         this.edit1 = (EditText) OrderLayout.findViewById(R.id.edit1);
@@ -139,7 +139,7 @@ public class OrderFragment extends Fragment {
         @Override
         public void onClick(View arg0) {
             // TODO Auto-generated method stub
-            searchkeyword = edit1.getText().toString();
+            searchkeyword = edit1.getText().toString().replace(" ","");
             if (searchkeyword.equals("")) {
                 Toast.makeText(getActivity(), "请输入搜索内容", Toast.LENGTH_SHORT).show();
             } else {

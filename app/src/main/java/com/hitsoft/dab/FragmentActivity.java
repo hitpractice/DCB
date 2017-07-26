@@ -110,8 +110,8 @@ public class FragmentActivity extends Activity implements View.OnClickListener {
         switch (index) {
             case 0:
                 // 当点击了tab时，改变控件的图片和文字颜色
-                orderImage.setImageResource(R.drawable.successlogo);
-                orderText.setTextColor(Color.WHITE);
+                orderImage.setImageResource(R.mipmap.if_buy_g);
+                orderText.setTextColor(Color.BLACK);
                 if (orderFragment == null) {
                     orderFragment = new OrderFragment();
                     transaction.add(R.id.content, orderFragment);
@@ -121,8 +121,8 @@ public class FragmentActivity extends Activity implements View.OnClickListener {
                 break;
             case 1:
                 // 当点击了tab时，改变控件的图片和文字颜色
-                billImage.setImageResource(R.drawable.successlogo);
-                billText.setTextColor(Color.WHITE);
+                billImage.setImageResource(R.mipmap.if_bill_g);
+                billText.setTextColor(Color.BLACK);
                 if (billFragment == null) {
                     billFragment = new BillFragment();
                     transaction.add(R.id.content, billFragment);
@@ -133,8 +133,8 @@ public class FragmentActivity extends Activity implements View.OnClickListener {
             case 2:
             default:
                 // 当点击了tab时，改变控件的图片和文字颜色
-                myImage.setImageResource(R.drawable.successlogo);
-                myText.setTextColor(Color.WHITE);
+                myImage.setImageResource(R.mipmap.if_my_g);
+                myText.setTextColor(Color.BLACK);
                 if (myFragment == null) {
                     myFragment = new MyFragment();
                     transaction.add(R.id.content, myFragment);
@@ -150,11 +150,11 @@ public class FragmentActivity extends Activity implements View.OnClickListener {
      * 清除掉所有的选中状态。
      */
     private void clearSelection() {
-        orderImage.setImageResource(R.drawable.logo);
+        orderImage.setImageResource(R.mipmap.if_buy);
         orderText.setTextColor(Color.parseColor("#82858b"));
-        billImage.setImageResource(R.drawable.logo);
+        billImage.setImageResource(R.mipmap.if_bill);
         billText.setTextColor(Color.parseColor("#82858b"));
-        myImage.setImageResource(R.drawable.logo);
+        myImage.setImageResource(R.mipmap.if_my);
         myText.setTextColor(Color.parseColor("#82858b"));
     }
 
