@@ -53,6 +53,14 @@ public class OrderFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_list_item_1, data);
         ListView listView = (ListView) OrderLayout.findViewById(R.id.list_view1);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity() ,MainActivity.class);
+                startActivity(intent);
+            }
+
+        });
         listView.setAdapter(adapter);
 
         this.button1 = (ImageButton) OrderLayout.findViewById(R.id.button1);
@@ -127,8 +135,8 @@ public class OrderFragment extends Fragment {
         @Override
         public void onClick(View arg0) {
             // TODO Auto-generated method stub
-            Intent intent = new Intent(getActivity(), MapActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity(), MapActivity.class);
+//            startActivity(intent);
         }
 
     }

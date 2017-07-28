@@ -9,6 +9,11 @@
     tools:context="com.hitsoft.dab.MainActivity"
     android:orientation="horizontal"
     android:weightSum="1">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/p1"/>
     <TextView android:id="@+id/goodname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,10 +40,10 @@
         android:textSize="10dp"
         android:layout_gravity="center|right"
         />
-    <EditText
+    <TextView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/e1"/>
+        android:id="@+id/num"/>
     <Button
         android:id="@+id/addButton"
         android:layout_width="30dp"

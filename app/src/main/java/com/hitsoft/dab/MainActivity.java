@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,22 +28,22 @@ public class MainActivity extends Activity {
      */
     private List<Map<String, Object>> mData;
     private ListView mListView;
+    private Button sure;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_info);
+        this.sure=(Button)findViewById(R.id.sure);
+        sure.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,PayActivity.class);
+                startActivity(intent);
+            }
+        });
         mListView=(ListView)findViewById(R.id.lv);
-//        returnButton = (Button)findViewById(R.id.returnButton);
-//        returnButton.setOnClickListener(new OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                //返回上层界面（用户中心）
-//                Intent intent = new Intent(MyGoodsActivity.this,MyInfoActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
         MyAdapter adapter = new MyAdapter(this);
         mListView.setAdapter(adapter);
         mListView.setItemsCanFocus(false);
@@ -84,11 +85,14 @@ public class MainActivity extends Activity {
         public TextView goodlocation;
         public Button delectButton;
         public Button addButton;
-        public EditText e1;
+        public TextView num;
+        private ImageView p1;
+
     }
 
     public class MyAdapter extends BaseAdapter{
         private LayoutInflater mInflater;
+        public int a;
 
         public MyAdapter(Context context){
             this.mInflater = LayoutInflater.from(context);
@@ -115,6 +119,7 @@ public class MainActivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             ViewHolder holder = null;
             if (convertView == null) {
                 holder=new ViewHolder();
@@ -124,26 +129,38 @@ public class MainActivity extends Activity {
                 holder.goodlocation = (TextView)convertView.findViewById(R.id.goodlocation);
                 holder.delectButton = (Button)convertView.findViewById(R.id.delectButton);
                 holder.addButton = (Button)convertView.findViewById(R.id.addButton);
-                holder.e1=(EditText)convertView.findViewById(R.id.e1);
+                holder.p1=(ImageView)convertView.findViewById(R.id.p1);
+                holder.num=(TextView)convertView.findViewById(R.id.num);
+
 
 
                 convertView.setTag(holder);
             }else {
                 holder = (ViewHolder)convertView.getTag();
             }
+
             holder.goodname.setText((String)mData.get(position).get("goodname"));
             holder.goodprice.setText((String)mData.get(position).get("goodprice"));
             holder.goodlocation.setText((String)mData.get(position).get("goodlocation"));
+            holder.num.setText(a+"");
             holder.delectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //减少c商品
+
+                    if (a>0){
+                    a=a-1;
+                    }else {
+                        a=2;
+                    }
+
                 }
             });
             holder.addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //增加商品信息
+                    a=a+1;
                 }
             });
             return convertView;
